@@ -1,19 +1,21 @@
 FROM r-base:4.0.3
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update
+RUN apt-get update --fix-missing
 
 # python things
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install --assume-yes\
     build-essential \
     libpq-dev \
     python3.9 \
     python3-pip \
     python3-setuptools \
-    python3-dev
+    python3-dev \
+    libpython3-dev
+
 RUN pip3 install --upgrade pip
 
 # r things
-RUN apt-get install --assume-yes --no-upgrade \
+RUN apt-get install --assume-yes \
     libssl-dev \
     libcurl4-openssl-dev \
     libxml2-dev \
@@ -27,7 +29,8 @@ RUN apt-get install --assume-yes --no-upgrade \
     libv8-dev \
     libmagick++-dev\
     libmariadb-dev \
-    unixodbc-dev
+    unixodbc-dev \
+    git-dev
 
 # copy over envs
 ENV PYTHONPATH "${PYTHONPATH}:/app"

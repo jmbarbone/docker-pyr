@@ -1,4 +1,4 @@
-docker build --tag pyr .
+docker build --progress=plain --tag pyr .
 # docker run -p 8080:80 -d --name pyr pyr
 # docker run -it --name pyr pyr
 
